@@ -14,12 +14,12 @@ namespace NGDS.Web.Controllers
 {
     public class DrinksController : Controller
     {
-        private DrinksDb db = new DrinksDb();
+        private DrinksRepository repository = new DrinksRepository();
 
         // GET: Drinks
         public async Task<ActionResult> Index()
         {
-            return View(await db.Drinks.ToListAsync());
+            return View(await repository.AllDrinks());
         }
 
         // GET: Drinks/Details/5
@@ -29,7 +29,7 @@ namespace NGDS.Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Drink drink = await db.Drinks.FindAsync(id);
+            Drink drink = await repository.FindById(id);
             if (drink == null)
             {
                 return HttpNotFound();
@@ -52,8 +52,7 @@ namespace NGDS.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Drinks.Add(drink);
-                await db.SaveChangesAsync();
+                repository.Add(drink);
                 return RedirectToAction("Index");
             }
 
@@ -67,7 +66,7 @@ namespace NGDS.Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Drink drink = await db.Drinks.FindAsync(id);
+            Drink drink = await repository.FindById(id);
             if (drink == null)
             {
                 return HttpNotFound();
@@ -84,8 +83,7 @@ namespace NGDS.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(drink).State = EntityState.Modified;
-                await db.SaveChangesAsync();
+                await repository.Edit(drink);
                 return RedirectToAction("Index");
             }
             return View(drink);
@@ -98,7 +96,7 @@ namespace NGDS.Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Drink drink = await db.Drinks.FindAsync(id);
+            Drink drink = await repository.FindById(id);
             if (drink == null)
             {
                 return HttpNotFound();
@@ -111,9 +109,7 @@ namespace NGDS.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            Drink drink = await db.Drinks.FindAsync(id);
-            db.Drinks.Remove(drink);
-            await db.SaveChangesAsync();
+            await repository.Delete(id);
             return RedirectToAction("Index");
         }
 
@@ -121,7 +117,7 @@ namespace NGDS.Web.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                repository.Dispose();
             }
             base.Dispose(disposing);
         }
