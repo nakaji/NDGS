@@ -12,5 +12,7 @@ namespace NGDS.Web.DataContexts
         public DrinksDb() : base("DefaultConnection") { }
 
         public DbSet<Drink> Drinks { get; set; }
+
+        public System.Data.Entity.DbSet<NGDS.Web.Models.Stock> Stocks { get; set; }
     }
 }
