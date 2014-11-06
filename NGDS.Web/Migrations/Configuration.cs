@@ -10,6 +10,7 @@ namespace NGDS.Web.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
+            //AutomaticMigrationDataLossAllowed = true;
             ContextKey = "NGDS.Web.DataContexts.DrinksDb";
         }
 
