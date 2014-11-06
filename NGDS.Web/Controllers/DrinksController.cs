@@ -52,7 +52,7 @@ namespace NGDS.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                repository.Add(drink);
+                await repository.Add(drink);
                 return RedirectToAction("Index");
             }
 
