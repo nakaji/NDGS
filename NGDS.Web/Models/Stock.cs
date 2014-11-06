@@ -22,9 +22,5 @@ namespace NGDS.Web.Models
 
         [NotMapped]
         public int Remaining { get { return Amount - Consumption; } }
-
-        [Required]
-        [DisplayName("入手日")]
-        public DateTime AcquiredDay { get; set; }
     }
 }
