@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace NGDS.Web.Models
 {
-    public class Drink
+    public class Drink : EntityModelBase
     {
         public int Id { get; set; }
 

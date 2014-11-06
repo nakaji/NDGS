@@ -79,7 +79,7 @@ namespace NGDS.Web.Controllers
         // 詳細については、http://go.microsoft.com/fwlink/?LinkId=317598 を参照してください。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id,Name,Volume")] Drink drink)
+        public async Task<ActionResult> Edit([Bind(Include = "Id,Name,Volume,CreateDateTime,UpdateDateTime")] Drink drink)
         {
             if (ModelState.IsValid)
             {

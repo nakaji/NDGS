@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace NGDS.Web.Models
 {
-    public class Stock
+    public class Stock : EntityModelBase
     {
         public int Id { get; set; }
 
