@@ -17,6 +17,12 @@ namespace NGDS.Web.Models
             return await _db.Stocks.Include("Drink").ToListAsync();
         }
 
+        public async Task Add(Stock stock)
+        {
+            _db.Stocks.Add(stock);
+            await _db.SaveChangesAsync();
+        }
+
         public void Dispose()
         {
             _db.Dispose();
