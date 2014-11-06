@@ -9,8 +9,10 @@ namespace NGDS.Web.Models
     {
         public int Id { get; set; }
 
-        [Required]
         public Drink Drink { get; set; }
+
+        [Required]
+        public int DrinkId { get; set; }
 
         [Required]
         [DisplayName("数量")]
