@@ -29,12 +29,12 @@ namespace NGDS.Web.Controllers
             var drinks = await repo.AllDrinks();
 
             var model = new StocksAddViewModel();
-            drinks.ForEach(x => model.Drinks.Add(
-                new SelectListItem
-                {
-                    Value = x.Id.ToString(),
-                    Text = string.Format("{0} {1}ml", x.Name, x.Volume),
-                }));
+
+            model.Drinks = drinks.Select(x => new SelectListItem
+            {
+                Value = x.Id.ToString(),
+                Text = string.Format("{0} {1}ml", x.Name, x.Volume),
+            }).ToList();
             return View(model);
         }
 
