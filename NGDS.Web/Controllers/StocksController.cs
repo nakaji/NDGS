@@ -22,17 +22,9 @@ namespace NGDS.Web.Controllers
 
         public async Task<ActionResult> Add()
         {
-            var repo = new DrinksRepository();
-
-            var drinks = await repo.AllDrinks();
-
             var model = new StocksAddViewModel();
 
-            model.Drinks = drinks.Select(x => new SelectListItem
-            {
-                Value = x.Id.ToString(),
-                Text = string.Format("{0} {1}ml", x.Name, x.Volume),
-            }).ToList();
+            model.Drinks = (await GetDrinkListItem()).ToList();
 
             return View(model);
         }
