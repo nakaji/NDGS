@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using NGDS.Web.Models;
 
 namespace NGDS.Web.ViewModels
 {
@@ -18,6 +19,19 @@ namespace NGDS.Web.ViewModels
         public int Amount { get; set; }
 
         public StocksAddViewModel()
+        {
+            Drinks = new List<SelectListItem>();
+        }
+    }
+
+    public class StocksEditViewModel
+    {
+        [DisplayName("銘柄")]
+        public List<SelectListItem> Drinks { get; set; }
+
+        public Stock Stock { get; set; }
+
+        public StocksEditViewModel()
         {
             Drinks = new List<SelectListItem>();
         }

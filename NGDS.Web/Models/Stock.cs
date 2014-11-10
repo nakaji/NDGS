@@ -9,7 +9,7 @@ namespace NGDS.Web.Models
     {
         public int Id { get; set; }
 
-        public Drink Drink { get; set; }
+        public virtual Drink Drink { get; set; }
 
         [Required]
         public int DrinkId { get; set; }
