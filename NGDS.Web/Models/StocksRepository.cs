@@ -38,5 +38,12 @@ namespace NGDS.Web.Models
             _db.Entry(stock).State = EntityState.Modified;
             await _db.SaveChangesAsync();
         }
+
+        public async Task Delete(int id)
+        {
+            var stock = await _db.Stocks.FindAsync(id);
+            _db.Stocks.Remove(stock);
+            await _db.SaveChangesAsync();
+        }
     }
 }

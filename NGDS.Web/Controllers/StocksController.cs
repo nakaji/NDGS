@@ -78,6 +78,30 @@ namespace NGDS.Web.Controllers
             return View(model);
         }
 
+        public async Task<ActionResult> Delete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var stock = await repo.FindById(id);
+            if (stock == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(stock);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> DeleteConfirmed(int id)
+        {
+            await repo.Delete(id);
+            return RedirectToAction("Index");
+        }
+
         private async Task<IEnumerable<SelectListItem>> GetDrinkListItem()
         {
             var drinksRepository = new DrinksRepository();

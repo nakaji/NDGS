@@ -250,6 +250,7 @@
     <Content Include="Views\Stocks\Index.cshtml" />
     <Content Include="Views\Stocks\Add.cshtml" />
     <Content Include="Views\Stocks\Edit.cshtml" />
+    <Content Include="Views\Stocks\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
